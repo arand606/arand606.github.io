@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M00NK1DD — Roblox Scripting Tips</title>
+  <style>
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0d0b1a;
+      --surface: #16132b;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.4);
+      --text: #e2deff;
+      --text-dim: #9b94c4;
+      --border: rgba(139, 92, 246, 0.2);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    @media (pointer: fine) {
+      body {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%238b5cf6' stroke='%23e2deff' stroke-width='1.5'/%3E%3Ccircle cx='14' cy='14' r='1.5' fill='%23e2deff'/%3E%3C/svg%3E") 14 14, auto;
+      }
+
+      a, button, .btn-primary, .btn-secondary, .nav-cta, .feature-card, .footer-discord, .copy-btn {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 L24 16 L16 17 L13 27 Z' fill='%238b5cf6' stroke='%23e2deff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 8 4, pointer;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13, 11, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--text);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 1.3rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.1s, outline 0.2s;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      filter: blur(60px);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      padding: 0.8rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.1s, outline 0.2s;
+    }
+
+    .btn-secondary {
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, outline 0.2s;
+    }
+
+    .features {
+      padding: 5rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s, outline 0.2s;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .scripts-section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .script-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .script-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .script-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .script-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .script-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      padding: 0.4rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .copy-btn.copied {
+      background: #4ade80;
+      box-shadow: 0 0 16px rgba(74, 222, 128, 0.4);
+    }
+
+    .script-meta {
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .script-meta span strong {
+      color: var(--text);
+    }
+
+    .code-block {
+      position: relative;
+      max-height: 500px;
+      overflow: auto;
+      max-width: 100%;
+    }
+
+    .code-block pre {
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    .code-block code {
+      font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #c4b9f5;
+      white-space: pre;
+      display: block;
+    }
+
+    .code-block::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .code-block::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .code-block::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .cta-section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .cta-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, var(--accent-glow), transparent 60%);
+      opacity: 0.3;
+    }
+
+    .cta-box > * {
+      position: relative;
+    }
+
+    .cta-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-box p {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-discord {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s, outline 0.2s;
+      border-radius: 6px;
+    }
+
+    .btn-primary:active, .btn-secondary:active, .nav-cta:active, .feature-card:active, .copy-btn:active, .footer-discord:active {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .btn-primary:active { transform: scale(0.95); }
+    .btn-secondary:active { transform: scale(0.95); background: rgba(139, 92, 246, 0.15); }
+    .nav-cta:active { transform: scale(0.95); }
+    .feature-card:active { transform: scale(0.98); }
+    .copy-btn:active { transform: scale(0.95); }
+    .footer-discord:active { opacity: 0.8; }
+    nav ul a:active { color: var(--accent); }
+
+    @media (hover: hover) {
+      nav ul a:hover { color: var(--accent); }
+      nav ul a:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+      
+      .nav-cta:hover, .nav-cta:focus-visible {
+        box-shadow: 0 0 20px var(--accent-glow);
+        transform: translateY(-1px);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .btn-primary:hover, .btn-primary:focus-visible {
+        box-shadow: 0 0 24px var(--accent-glow);
+        transform: translateY(-2px);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .btn-secondary:hover, .btn-secondary:focus-visible {
+        border-color: var(--accent);
+        background: rgba(139, 92, 246, 0.08);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .feature-card:hover, .feature-card:focus-visible {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .copy-btn:hover, .copy-btn:focus-visible {
+        box-shadow: 0 0 16px var(--accent-glow);
+        transform: translateY(-1px);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .footer-discord:hover, .footer-discord:focus-visible {
+        color: var(--text);
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav ul { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero-btns { flex-direction: column; width: 100%; }
+      .hero-btns a { width: 100%; text-align: center; }
+      .script-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .features { padding: 4rem 1.5rem; }
+      .scripts-section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">M00N<span>K1DD</span></div>
+    <ul>
+      <li><a href="#features">Tips</a></li>
+      <li><a href="#scripts">Scripts</a></li>
+      <li><a href="#cta">Get Started</a></li>
+    </ul>
+    <a href="https://discord.gg/BBZmjcnYt" target="_blank" rel="noopener" class="nav-cta">Join Discord</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Level Up Your Roblox Scripts</h1>
+    <p>Expert scripting tips, tricks, and techniques to take your Roblox game development to the next level. From beginner to advanced — M00NK1DD has you covered.</p>
+    <div class="hero-btns">
+      <a href="#features" class="btn-primary">Explore Tips</a>
+      <a href="https://discord.gg/BBZmjcnYt" target="_blank" rel="noopener" class="btn-secondary">Join Our Discord</a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2 class="section-title">What You'll Learn</h2>
+    <p class="section-subtitle">Practical scripting knowledge you can apply right away.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Performance Optimization</h3>
+        <p>Write cleaner, faster Luau code that keeps your games running smooth even with complex mechanics.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>Advanced Mechanics</h3>
+        <p>Master RemoteEvents, DataStores, OOP patterns, and modular systems used by top Roblox developers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Game Architecture</h3>
+        <p>Structure your projects for scalability with client-server best practices and clean folder hierarchies.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐛</div>
+        <h3>Debugging Tips</h3>
+        <p>Learn how to track down bugs fast using Roblox Studio tools, print strategies, and error handling.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>UI & UX Scripting</h3>
+        <p>Create responsive, polished interfaces with TweenService, SurfaceGui, and smooth animations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Anti-Exploit Basics</h3>
+        <p>Understand common vulnerabilities in Roblox games and how to protect your server-side logic.</p>
+      </div>
+    </div>
+  </section>
+
+
+    <section class="scripts-section" id="scripts">
+    <h2 class="section-title">Scripts</h2>
+    <p class="section-subtitle">Ready-to-use Luau scripts for your Roblox games.</p>
+
+    <!-- Script 1: Music Player -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="script-header-left">
+          <h3>🎵 Music Player (Revamped)</h3>
+          <span class="script-tag">Luau</span>
+        </div>
+        <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+      </div>
+      <div class="script-meta">
+        <span><strong>Author:</strong> Vecxson</span>
+        <span><strong>Type:</strong> Client-side UI</span>
+        <span><strong>Features:</strong> Playlist, Visualizer, Scrubbing</span>
+      </div>
+      <div class="code-block">
+        <pre><code>-- Music Player (Revamped) - Fixed by Vecxson (me)
+
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
+local UserInputService = game:GetService("UserInputService")
+
+local function tween(obj, props, t, style, dir)
+    return TweenService:Create(
+        obj,
+        TweenInfo.new(t or 0.3, style or Enum.EasingStyle.Quint, dir or Enum.EasingDirection.Out),
+        props
+    )
+end
+
+local LMG2L = {}
+local sg = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
+sg.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+sg.ResetOnSpawn = false
+LMG2L["ScreenGui_1"] = sg
+
+local mainCanvas = Instance.new("CanvasGroup", sg)
+mainCanvas.Size      = UDim2.new(0.22, 0, 0.30, 0)
+mainCanvas.Position  = UDim2.new(0.449, 0, 0.139, 0)
+mainCanvas.BackgroundColor3 = Color3.fromRGB(10, 10, 14)
+mainCanvas.BackgroundTransparency = 0.08
+mainCanvas.GroupTransparency = 1
+mainCanvas.BorderSizePixel = 0
+Instance.new("UICorner", mainCanvas).CornerRadius = UDim.new(0, 22)
+
+local panelStroke = Instance.new("UIStroke", mainCanvas)
+panelStroke.Color       = Color3.fromRGB(255, 255, 255)
+panelStroke.Thickness   = 1
+panelStroke.Transparency = 0.80
+
+Instance.new("UIDragDetector", mainCanvas)
+
+local accentBar = Instance.new("Frame", mainCanvas)
+accentBar.Size               = UDim2.new(0.55, 0, 0, 2)
+accentBar.Position           = UDim2.new(0.225, 0, 0, 0)
+accentBar.BackgroundColor3   = Color3.fromRGB(160, 120, 255)
+accentBar.BorderSizePixel    = 0
+Instance.new("UICorner", accentBar).CornerRadius = UDim.new(0, 2)
+
+local indexBadge = Instance.new("TextLabel", mainCanvas)
+indexBadge.Size               = UDim2.new(0.18, 0, 0.09, 0)
+indexBadge.Position           = UDim2.new(0.075, 0, 0.06, 0)
+indexBadge.BackgroundColor3   = Color3.fromRGB(255, 255, 255)
+indexBadge.BackgroundTransparency = 0.92
+indexBadge.TextColor3         = Color3.fromRGB(200, 160, 255)
+indexBadge.Font               = Enum.Font.GothamBold
+indexBadge.TextSize           = 10
+indexBadge.Text               = "01"
+Instance.new("UICorner", indexBadge).CornerRadius = UDim.new(0, 6)
+
+local nameClipper = Instance.new("Frame", mainCanvas)
+nameClipper.Name              = "NameClipper"
+nameClipper.Size              = UDim2.new(0.85, 0, 0.14, 0)
+nameClipper.Position          = UDim2.new(0.075, 0, 0.13, 0)
+nameClipper.BackgroundTransparency = 1
+nameClipper.ClipsDescendants  = true
+
+local function makeNameLabel(parent)
+    local lbl = Instance.new("TextLabel", parent)
+    lbl.Size                   = UDim2.new(0, 0, 1, 0)
+    lbl.BackgroundTransparency = 1
+    lbl.Font                   = Enum.Font.GothamBold
+    lbl.TextColor3             = Color3.new(1, 1, 1)
+    lbl.TextSize               = 15
+    lbl.Text                   = "LOADING..."
+    lbl.TextXAlignment         = Enum.TextXAlignment.Left
+    lbl.TextTruncate           = Enum.TextTruncate.None
+    return lbl
+end
+
+local songNameLabel  = makeNameLabel(nameClipper)
+local songNameLabel2 = makeNameLabel(nameClipper)
+
+local vizContainer = Instance.new("Frame", mainCanvas)
+vizContainer.Size             = UDim2.new(0.85, 0, 0.12, 0)
+vizContainer.Position         = UDim2.new(0.075, 0, 0.30, 0)
+vizContainer.BackgroundTransparency = 1
+
+local VIZ_COUNT = 18
+local vizBars   = {}
+local vizLayout = Instance.new("UIListLayout", vizContainer)
+vizLayout.FillDirection       = Enum.FillDirection.Horizontal
+vizLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+vizLayout.VerticalAlignment   = Enum.VerticalAlignment.Bottom
+vizLayout.Padding             = UDim.new(0.012, 0)
+
+for i = 1, VIZ_COUNT do
+    local bar = Instance.new("Frame", vizContainer)
+    bar.Size              = UDim2.new(1 / (VIZ_COUNT * 1.6), 0, 0.25, 0)
+    bar.BackgroundColor3  = Color3.fromRGB(160, 120, 255)
+    bar.BackgroundTransparency = 0.55
+    bar.BorderSizePixel   = 0
+    Instance.new("UICorner", bar).CornerRadius = UDim.new(0, 3)
+    vizBars[i] = bar
+end
+
+local function pulseViz(isPlaying)
+    for i, bar in ipairs(vizBars) do
+        local targetH = isPlaying and math.random(15, 100) / 100 or 0.08
+        local delay   = (i - 1) * 0.03
+        local tw = tween(bar, {Size = UDim2.new(bar.Size.X.Scale, 0, targetH, 0)}, 0.35 + math.random() * 0.25, Enum.EasingStyle.Sine)
+        task.delay(delay, function() tw:Play() end)
+    end
+end
+
+local barBg = Instance.new("Frame", mainCanvas)
+barBg.Size              = UDim2.new(0.85, 0, 0.025, 0)
+barBg.Position          = UDim2.new(0.075, 0, 0.76, 0)
+barBg.BackgroundColor3  = Color3.fromRGB(255, 255, 255)
+barBg.BackgroundTransparency = 0.88
+barBg.BorderSizePixel   = 0
+Instance.new("UICorner", barBg)
+
+local fill = Instance.new("Frame", barBg)
+fill.Size             = UDim2.new(0, 0, 1, 0)
+fill.BackgroundColor3 = Color3.fromRGB(160, 120, 255)
+fill.BorderSizePixel  = 0
+Instance.new("UICorner", fill)
+
+local scrubKnob = Instance.new("Frame", barBg)
+scrubKnob.Size             = UDim2.new(0, 10, 0, 10)
+scrubKnob.AnchorPoint      = Vector2.new(0.5, 0.5)
+scrubKnob.Position         = UDim2.new(0, 0, 0.5, 0)
+scrubKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+scrubKnob.BackgroundTransparency = 1
+scrubKnob.BorderSizePixel  = 0
+Instance.new("UICorner", scrubKnob).CornerRadius = UDim.new(1, 0)
+
+barBg.MouseEnter:Connect(function()
+    tween(scrubKnob, {BackgroundTransparency = 0}, 0.18):Play()
+    tween(barBg, {BackgroundTransparency = 0.78}, 0.18):Play()
+end)
+barBg.MouseLeave:Connect(function()
+    tween(scrubKnob, {BackgroundTransparency = 1}, 0.18):Play()
+    tween(barBg, {BackgroundTransparency = 0.88}, 0.18):Play()
+end)
+
+local function makeTimeLabel(parent, xScale, align)
+    local lbl = Instance.new("TextLabel", parent)
+    lbl.Size              = UDim2.new(0.22, 0, 0.09, 0)
+    lbl.Position          = UDim2.new(xScale, 0, 0.82, 0)
+    lbl.BackgroundTransparency = 1
+    lbl.TextColor3        = Color3.fromRGB(160, 160, 180)
+    lbl.Font              = Enum.Font.GothamMedium
+    lbl.TextSize          = 9
+    lbl.Text              = "0:00"
+    lbl.TextXAlignment    = align
+    return lbl
+end
+
+local timeElapsed = makeTimeLabel(mainCanvas, 0.075, Enum.TextXAlignment.Left)
+local timeTotal   = makeTimeLabel(mainCanvas, 0.703, Enum.TextXAlignment.Right)
+
+local function makeBtn(text, size, posScale, isMain)
+    local btn = Instance.new("TextButton", mainCanvas)
+    btn.BackgroundColor3      = Color3.fromRGB(255, 255, 255)
+    btn.BackgroundTransparency = isMain and 0.88 or 0.94
+    btn.Size                  = size
+    btn.Text                  = text
+    btn.Font                  = Enum.Font.GothamBold
+    btn.TextColor3            = Color3.fromRGB(255, 255, 255)
+    btn.TextScaled            = true
+    btn.AnchorPoint           = Vector2.new(0.5, 0.5)
+    btn.Position              = UDim2.new(
+        posScale.X.Scale + size.X.Scale / 2, 0,
+        posScale.Y.Scale + size.Y.Scale / 2, 0
+    )
+    btn.BorderSizePixel = 0
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 14)
+
+    local st = Instance.new("UIStroke", btn)
+    st.Color       = isMain and Color3.fromRGB(160, 120, 255) or Color3.fromRGB(255, 255, 255)
+    st.Transparency = isMain and 0.55 or 0.88
+    st.Thickness   = 1
+
+    local BASE_TRANSP = isMain and 0.88 or 0.94
+
+    btn.MouseEnter:Connect(function()
+        tween(btn, {BackgroundTransparency = 0.75, Size = UDim2.new(size.X.Scale * 1.06, 0, size.Y.Scale * 1.06, 0)}, 0.18):Play()
+        tween(st, {Transparency = 0.3}, 0.18):Play()
+    end)
+    btn.MouseLeave:Connect(function()
+        tween(btn, {BackgroundTransparency = BASE_TRANSP, Size = size}, 0.18):Play()
+        tween(st, {Transparency = isMain and 0.55 or 0.88}, 0.18):Play()
+    end)
+    btn.MouseButton1Down:Connect(function()
+        tween(btn, {Size = UDim2.new(size.X.Scale * 0.93, 0, size.Y.Scale * 0.93, 0)}, 0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.In):Play()
+    end)
+    btn.MouseButton1Up:Connect(function()
+        tween(btn, {Size = UDim2.new(size.X.Scale * 1.06, 0, size.Y.Scale * 1.06, 0)}, 0.18):Play()
+    end)
+    return btn
+end
+
+local btnPrev = makeBtn("&lt;&lt;", UDim2.new(0.18, 0, 0.20, 0), UDim2.new(0.08, 0, 0.45, 0))
+local btnPlay = makeBtn("PLAY", UDim2.new(0.28, 0, 0.28, 0), UDim2.new(0.36, 0, 0.44, 0), true)
+local btnNext = makeBtn("&gt;&gt;", UDim2.new(0.18, 0, 0.20, 0), UDim2.new(0.74, 0, 0.45, 0))
+
+local playlist = {
+    {id = 1845341094,       name = "Chill Jazz"},
+    {id = 1848354536,       name = "Relaxed Scene"},
+    {id = 5410086218,       name = "CRAB RAVE"},
+    {id = 1835375761,       name = "Chill Music"},
+    {id = 1838457617,       name = "Elegant Tune"},
+    {id = 16190782181,      name = "EEYUH!"},
+    {id = 116760785243534,  name = "Gozalo"},
+    {id = 85779066308136,   name = "Hotel Room"},
+    {id = 106561102974653,  name = "Disco Panzer"},
+    {id = 120785124326826,  name = "Who's So Autonomous"},
+    {id = 114213622974713,  name = "Loneliest hour"},
+    {id = 110788401793874,  name = "PEAKK"},
+    {id = 140704128008979,  name = "Goth Funk"},
+    {id = 110919391228823,  name = "Low Cortisol"},
+}
+
+local index, loadToken, isScrubbing = 1, 0, false
+local sound = SoundService:FindFirstChild("MainMusic") or Instance.new("Sound", SoundService)
+sound.Name   = "MainMusic"
+sound.Volume = 0.5
+sound.Looped = true
+
+local function formatTime(s)
+    if not s or s ~= s or s == math.huge then return "0:00" end
+    return string.format("%d:%02d", math.floor(s / 60), math.floor(s % 60))
+end
+
+local vizToken = 0
+local function startVizLoop()
+    vizToken += 1
+    local myToken = vizToken
+    task.spawn(function()
+        while vizToken == myToken and sound.IsPlaying do
+            pulseViz(true)
+            task.wait(0.45)
+        end
+        if vizToken == myToken then
+            pulseViz(false)
+        end
+    end)
+end
+
+local function stopViz()
+    vizToken += 1
+    pulseViz(false)
+end
+
+local function flashPanel()
+    local tw1 = tween(mainCanvas, {GroupTransparency = 0.35}, 0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+    local tw2 = tween(mainCanvas, {GroupTransparency = 0}, 0.3)
+    tw1:Play()
+    tw1.Completed:Connect(function() tw2:Play() end)
+end
+
+local function updateDisplay(loading)
+    if loading then
+        songNameLabel.Text  = "LOADING..."
+        songNameLabel2.Text = "LOADING..."
+        indexBadge.Text    = string.format("%02d", index)
+        stopViz()
+    else
+        songNameLabel.Text  = playlist[index].name:upper()
+        songNameLabel2.Text = playlist[index].name:upper()
+        indexBadge.Text    = string.format("%02d", index)
+        timeTotal.Text     = formatTime(sound.TimeLength)
+        btnPlay.Text       = sound.IsPlaying and "PAUSE" or "PLAY"
+        if sound.IsPlaying then
+            startVizLoop()
+        else
+            stopViz()
+        end
+    end
+    songNameLabel.Position  = UDim2.new(0, 0, 0, 0)
+    songNameLabel2.Position = UDim2.new(2, 0, 0, 0)
+end
+
+local function loadTrack(autoplay)
+    loadToken += 1
+    local token = loadToken
+    flashPanel()
+    updateDisplay(true)
+    sound:Stop()
+    task.spawn(function()
+        sound.SoundId = "rbxassetid://" .. playlist[index].id
+        task.wait()
+        local timeout = 10
+        local elapsed = 0
+        while not sound.IsLoaded and elapsed &lt; timeout do
+            task.wait(0.1)
+            elapsed += 0.1
+        end
+        if token ~= loadToken then return end
+        
+        if autoplay then
+            sound:Play()
+        end
+        updateDisplay(false)
+    end)
+end
+
+
+btnPlay.MouseButton1Click:Connect(function()
+    if sound.IsPlaying then
+        sound:Pause()
+        stopViz()
+    else
+        if sound.TimePosition &gt; 0 then
+            sound:Resume()
+        else
+            sound:Play()
+        end
+        startVizLoop()
+    end
+    btnPlay.Text = sound.IsPlaying and "PAUSE" or "PLAY"
+end)
+
+btnPrev.MouseButton1Click:Connect(function()
+    index = (index - 2) % #playlist + 1
+    loadTrack(true)
+end)
+
+btnNext.MouseButton1Click:Connect(function()
+    index = index % #playlist + 1
+    loadTrack(true)
+end)
+
+RunService.RenderStepped:Connect(function()
+    if not isScrubbing and sound.IsPlaying and sound.TimeLength &gt; 0 then
+        local p = math.clamp(sound.TimePosition / sound.TimeLength, 0, 1)
+        fill.Size = UDim2.new(p, 0, 1, 0)
+        scrubKnob.Position = UDim2.new(p, 0, 0.5, 0)
+        timeElapsed.Text = formatTime(sound.TimePosition)
+    end
+
+    local textW = songNameLabel.TextBounds.X
+    local clipW = nameClipper.AbsoluteSize.X
+    if textW &gt; clipW then
+        local GAP    = 50
+        local cycle  = textW + GAP
+        local speed  = 38
+        local offset = (tick() * speed) % cycle
+
+        songNameLabel.TextXAlignment  = Enum.TextXAlignment.Left
+        songNameLabel2.TextXAlignment = Enum.TextXAlignment.Left
+        songNameLabel.Size    = UDim2.new(0, textW, 1, 0)
+        songNameLabel2.Size   = UDim2.new(0, textW, 1, 0)
+
+        songNameLabel.Position  = UDim2.new(0, -offset, 0, 0)
+        songNameLabel2.Position = UDim2.new(0, cycle - offset, 0, 0)
+    else
+        songNameLabel.TextXAlignment  = Enum.TextXAlignment.Center
+        songNameLabel2.TextXAlignment = Enum.TextXAlignment.Center
+        songNameLabel.Size    = UDim2.new(1, 0, 1, 0)
+        songNameLabel2.Size   = UDim2.new(0, 0, 1, 0)
+        songNameLabel.Position  = UDim2.new(0, 0, 0, 0)
+        songNameLabel2.Position = UDim2.new(2, 0, 0, 0)
+    end
+end)
+
+barBg.InputBegan:Connect(function(input)
+    local t = input.UserInputType
+    if t ~= Enum.UserInputType.MouseButton1 and t ~= Enum.UserInputType.Touch then return end
+    isScrubbing = true
+
+    local function getScrubPos()
+        local mx = UserInputService:GetMouseLocation().X
+        return math.clamp((mx - barBg.AbsolutePosition.X) / barBg.AbsoluteSize.X, 0, 1)
+    end
+    local function applyPos()
+        local p = getScrubPos()
+        fill.Size = UDim2.new(p, 0, 1, 0)
+        scrubKnob.Position = UDim2.new(p, 0, 0.5, 0)
+        timeElapsed.Text = formatTime(p * sound.TimeLength)
+        return p
+    end
+
+    local conn1 = UserInputService.InputChanged:Connect(function(move)
+        if move.UserInputType == Enum.UserInputType.MouseMovement
+            or move.UserInputType == Enum.UserInputType.Touch then
+            applyPos()
+        end
+    end)
+    local conn2
+    conn2 = UserInputService.InputEnded:Connect(function(ended)
+        if ended.UserInputType == Enum.UserInputType.MouseButton1
+            or ended.UserInputType == Enum.UserInputType.Touch then
+            sound.TimePosition = sound.TimeLength * applyPos()
+            isScrubbing = false
+            conn1:Disconnect()
+            conn2:Disconnect()
+        end
+    end)
+end)
+
+loadTrack(false)
+tween(mainCanvas, {GroupTransparency = 0}, 0.9, Enum.EasingStyle.Quint):Play()
+
+task.spawn(function()
+    while true do
+        tween(accentBar, {BackgroundColor3 = Color3.fromRGB(200, 130, 255)}, 1.2, Enum.EasingStyle.Sine):Play()
+        task.wait(1.2)
+        tween(accentBar, {BackgroundColor3 = Color3.fromRGB(120, 90, 230)}, 1.2, Enum.EasingStyle.Sine):Play()
+        task.wait(1.2)
+    end
+end)
+
+return LMG2L["ScreenGui_1"]</code></pre>
+      </div>
+    </div>
+
+    <!-- Script 2: M00NK1DD GUI -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="script-header-left">
+          <h3>💻 M00NK1DD Executor GUI</h3>
+          <span class="script-tag">Luau</span>
+        </div>
+        <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+      </div>
+      <div class="script-meta">
+        <span><strong>Author:</strong> M00NK1DD</span>
+        <span><strong>Type:</strong> Client-side UI / Executor</span>
+        <span><strong>Features:</strong> Custom GUI, Execute, Reset, R6</span>
+      </div>
+      <div class="code-block">
+        <pre><code>-- M00NK1DD GUI - Fixed
+local GuiV1 = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local SourceFrame = Instance.new("Frame")
+local SourceScrolling = Instance.new("ScrollingFrame")
+local Input = Instance.new("TextBox")
+local ExecuteBtn = Instance.new("TextButton")
+local ClearBtn = Instance.new("TextButton")
+local ResetBtn = Instance.new("TextButton")
+local R6Btn = Instance.new("TextButton")
+local ResetAllBtn = Instance.new("TextButton")
+local IconBtn = Instance.new("TextButton")
+local ImageLabel_2 = Instance.new("ImageLabel")
+
+GuiV1.Name = "GuiV1"
+GuiV1.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+GuiV1.ResetOnSpawn = false
+GuiV1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = GuiV1
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BackgroundTransparency = 0.2
+MainFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+MainFrame.BorderSizePixel = 2
+MainFrame.Position = UDim2.new(0.30769223, 0, 0.293081909, 0)
+MainFrame.Size = UDim2.new(0.384615391, 0, 0.411320746, 0)
+MainFrame.ZIndex = 2
+MainFrame.Active = true
+MainFrame.Selectable = true
+MainFrame.Draggable = true
+
+TextLabel.Parent = MainFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.262645155, 0, -0.00305810408, 0)
+TextLabel.Size = UDim2.new(0.506976724, 0, 0.137614772, 0)
+TextLabel.ZIndex = 3
+TextLabel.Font = Enum.Font.Cartoon
+TextLabel.Text = "m00nk1dd"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextStrokeTransparency = 0
+TextLabel.TextWrapped = true
+
+ImageLabel.Parent = MainFrame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.557909608, 0, -0.304188192, 0)
+ImageLabel.Rotation = 20
+ImageLabel.Size = UDim2.new(0.475968987, 0, 0.920489311, 0)
+ImageLabel.ZIndex = 2
+ImageLabel.Image = "rbxassetid://131004660649166"
+ImageLabel.ScaleType = Enum.ScaleType.Fit
+
+SourceFrame.Name = "SourceFrame"
+SourceFrame.Parent = MainFrame
+SourceFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+SourceFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+SourceFrame.BorderSizePixel = 2
+SourceFrame.Position = UDim2.new(0.0167014897, 0, 0.137614772, 0)
+SourceFrame.Size = UDim2.new(0.968992233, 0, 0.730886877, 0)
+SourceFrame.ZIndex = 3
+
+SourceScrolling.Name = "SourceScrolling"
+SourceScrolling.Parent = SourceFrame
+SourceScrolling.Active = true
+SourceScrolling.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SourceScrolling.BackgroundTransparency = 1
+SourceScrolling.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SourceScrolling.BorderSizePixel = 0
+SourceScrolling.Size = UDim2.new(1, 0, 1, 0)
+SourceScrolling.ZIndex = 2
+SourceScrolling.HorizontalScrollBarInset = Enum.ScrollBarInset.Always
+SourceScrolling.VerticalScrollBarInset = Enum.ScrollBarInset.Always
+
+Input.Name = "Input"
+Input.Parent = SourceScrolling
+Input.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Input.BackgroundTransparency = 1
+Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Input.BorderSizePixel = 0
+Input.Size = UDim2.new(1, 0, 1, 0)
+Input.ZIndex = 3
+Input.ClearTextOnFocus = false
+Input.Font = Enum.Font.SourceSansBold
+Input.MultiLine = true
+Input.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Input.Text = ""
+Input.TextColor3 = Color3.fromRGB(255, 255, 255)
+Input.TextSize = 16
+Input.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Input.TextStrokeTransparency = 0
+Input.TextXAlignment = Enum.TextXAlignment.Left
+Input.TextYAlignment = Enum.TextYAlignment.Top
+
+local buttons = {ExecuteBtn, ClearBtn, ResetBtn, R6Btn, ResetAllBtn}
+for _, btn in pairs(buttons) do
+    btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    btn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    btn.BorderSizePixel = 2
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+end
+
+ExecuteBtn.Name = "ExecuteBtn"
+ExecuteBtn.Parent = MainFrame
+ExecuteBtn.Position = UDim2.new(0.0155038759, 0, 0.889908254, 0)
+ExecuteBtn.Size = UDim2.new(0.265116274, 0, 0.0917431191, 0)
+ExecuteBtn.ZIndex = 2
+ExecuteBtn.Font = Enum.Font.SourceSans
+ExecuteBtn.Text = "Execute"
+ExecuteBtn.TextScaled = true
+ExecuteBtn.TextSize = 14
+ExecuteBtn.TextWrapped = true
+
+ClearBtn.Name = "ClearBtn"
+ClearBtn.Parent = MainFrame
+ClearBtn.Position = UDim2.new(0.291472882, 0, 0.889908254, 0)
+ClearBtn.Size = UDim2.new(0.265116274, 0, 0.0917431191, 0)
+ClearBtn.ZIndex = 2
+ClearBtn.Font = Enum.Font.SourceSans
+ClearBtn.Text = "Clear"
+ClearBtn.TextScaled = true
+ClearBtn.TextSize = 14
+ClearBtn.TextWrapped = true
+
+ResetBtn.Name = "ResetBtn"
+ResetBtn.Parent = MainFrame
+ResetBtn.Position = UDim2.new(0.568992257, 0, 0.889908254, 0)
+ResetBtn.Size = UDim2.new(0.215503871, 0, 0.0917431191, 0)
+ResetBtn.ZIndex = 2
+ResetBtn.Font = Enum.Font.SourceSans
+ResetBtn.Text = "Reset Character"
+ResetBtn.TextScaled = true
+ResetBtn.TextSize = 14
+ResetBtn.TextWrapped = true
+
+R6Btn.Name = "R6Btn"
+R6Btn.Parent = MainFrame
+R6Btn.Position = UDim2.new(0.798449636, 0, 0.889908254, 0)
+R6Btn.Size = UDim2.new(0.186046511, 0, 0.0917431191, 0)
+R6Btn.ZIndex = 2
+R6Btn.Font = Enum.Font.SourceSans
+R6Btn.Text = "R6 Character"
+R6Btn.TextScaled = true
+R6Btn.TextSize = 14
+R6Btn.TextWrapped = true
+
+ResetAllBtn.Name = "ResetAllBtn"
+ResetAllBtn.Parent = MainFrame
+ResetAllBtn.Position = UDim2.new(0.0155038759, 0, 0.0214067269, 0)
+ResetAllBtn.Size = UDim2.new(0.186046511, 0, 0.0917431191, 0)
+ResetAllBtn.ZIndex = 2
+ResetAllBtn.Font = Enum.Font.SourceSans
+ResetAllBtn.Text = "Reset all"
+ResetAllBtn.TextScaled = true
+ResetAllBtn.TextSize = 14
+ResetAllBtn.TextWrapped = true
+
+IconBtn.Name = "IconBtn"
+IconBtn.Parent = GuiV1
+IconBtn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+IconBtn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+IconBtn.BorderSizePixel = 2
+IconBtn.Position = UDim2.new(0.478831232, 0, 0.0226415098, 0)
+IconBtn.Size = UDim2.new(0.0417412035, 0, 0.0880503133, 0)
+IconBtn.Font = Enum.Font.SourceSans
+IconBtn.Text = ""
+IconBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+IconBtn.TextSize = 14
+IconBtn.Active = true
+IconBtn.Selectable = true
+IconBtn.Draggable = true
+
+ImageLabel_2.Parent = IconBtn
+ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_2.BackgroundTransparency = 1
+ImageLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_2.BorderSizePixel = 0
+ImageLabel_2.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_2.Image = "rbxassetid://106749647599098"
+
+-- Functions
+function ExecuteScript()
+    local code = Input.Text
+    local func, err = loadstring(code)
+    if not func then warn(err) return end
+    func()
+end
+
+local function ClearText() 
+    Input.Text = "" 
+end
+
+local function ResetCharacter()
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character or plr.CharacterAdded:Wait()
+    char:BreakJoints()
+end
+
+local function ResetAllCharacter()
+    for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
+        if plr.Character then 
+            plr.Character:BreakJoints() 
+        end
+    end
+end
+
+local function R6Character()
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character
+    if char and char:FindFirstChild("Humanoid") then
+        char.Humanoid.RigType = Enum.HumanoidRigType.R6
+    end
+end
+
+local function CustomizeIcon()
+    MainFrame.Visible = not MainFrame.Visible
+end
+
+ResetAllBtn.MouseButton1Click:Connect(ResetAllCharacter)
+ResetBtn.MouseButton1Click:Connect(ResetCharacter)
+R6Btn.MouseButton1Click:Connect(R6Character)
+ClearBtn.MouseButton1Click:Connect(ClearText)
+ExecuteBtn.MouseButton1Click:Connect(ExecuteScript)
+IconBtn.MouseButton1Click:Connect(CustomizeIcon)</code></pre>
+      </div>
+    </div>
+
+    <!-- Script 3: Universal invis -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="script-header-left">
+          <h3>👻 Universal invis</h3>
+          <span class="script-tag">Luau</span>
+        </div>
+        <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+      </div>
+      <div class="script-meta">
+        <span><strong>Author:</strong> M00NK1DD</span>
+        <span><strong>Type:</strong> Executor / Loader</span>
+        <span><strong>Features:</strong> Makes the User invisible</span>
+      </div>
+      <div class="code-block">
+        <pre><code>loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cta">
+    <div class="cta-box">
+      <h2>Ready to Script Like a Pro?</h2>
+      <p>Join M00NK1DD on Discord and start leveling up your Roblox scripting skills today.</p>
+      <a href="https://discord.gg/BBZmjcnYt" target="_blank" rel="noopener" class="btn-primary">Join Our Discord</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://discord.gg/BBZmjcnYt" target="_blank" rel="noopener" class="footer-discord">
+      💬 Join our Discord
+    </a>
+    <br>
+    &copy; 2025 M00NK1DD. All rights reserved.
+  </footer>
+
+  <script>
+    function copyScript(btn) {
+      const card = btn.closest('.script-card');
+      if (!card) return;
+      const codeEl = card.querySelector('code');
+      if (!codeEl) return;
+      
+      const text = codeEl.innerText;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showCopied(btn);
+        }).catch(function() {
+          fallbackCopy(text, btn);
+        });
+      } else {
+        fallbackCopy(text, btn);
+      }
+    }
+
+    function fallbackCopy(text, btn) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.top = '0';
+      textArea.style.left = '0';
+      textArea.style.position = 'fixed';
+      
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showCopied(btn);
+        } else {
+          window.prompt("Copy to clipboard: Ctrl+C / Cmd+C, Enter", text);
+        }
+      } catch (err) {
+        window.prompt("Copy to clipboard: Ctrl+C / Cmd+C, Enter", text);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    function showCopied(btn) {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy Script';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
