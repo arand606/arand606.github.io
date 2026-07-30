@@ -26,10 +26,23 @@
       --border: rgba(124, 58, 237, 0.2);
         }
 
-        body {
+            body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg);
-      /* Star background */
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      max-width: 100vw;
+      position: relative; /* Added for the star overlay */
+      }
+        /* Star background overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-image: 
         radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
         radial-gradient(1px 1px at 80px 70px, #ffffff, transparent),
@@ -40,12 +53,8 @@
         radial-gradient(1px 1px at 300px 50px, #ffffff, transparent);
       background-size: 350px 350px;
       background-repeat: repeat;
-      background-attachment: fixed; /* Keeps stars still while scrolling */
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      max-width: 100vw;
-     }
+      z-index: -1; /* Keeps it behind all your content */
+    }
 
     @media (pointer: fine) {
       body {
