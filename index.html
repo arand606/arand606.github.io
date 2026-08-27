@@ -128,18 +128,9 @@
       transform: translate(-50%, -50%);
       width: 600px;
       height: 600px;
-      /* Glowing Swiss Cheese */
-      background-color: rgba(250, 204, 21, 0.15);
-      background-image: 
-        radial-gradient(circle at 20px 30px, #080808 5px, transparent 6px),
-        radial-gradient(circle at 80px 70px, #080808 8px, transparent 9px),
-        radial-gradient(circle at 140px 40px, #080808 6px, transparent 7px),
-        radial-gradient(circle at 50px 120px, #080808 4px, transparent 5px),
-        radial-gradient(circle at 200px 90px, #080808 7px, transparent 8px);
-      background-size: 150px 150px;
-      background-repeat: repeat;
-      filter: blur(30px); /* Blurs it to look like a distant glowing moon */
-      border-radius: 50%;
+      /* Clean moonlight glow */
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, transparent 70%);
+      filter: blur(40px);
       z-index: -1;
     }
     .hero h1 {
