@@ -9,14 +9,12 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-        :root {
+    :root {
       --bg: #0d0b1a;
       --surface: #16132b;
       --accent: #7c3aed;
@@ -24,18 +22,16 @@
       --text: #e2deff;
       --text-dim: #9b94c4;
       --border: rgba(124, 58, 237, 0.2);
-        }
-
-            body {
+    }
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
       max-width: 100vw;
-      position: relative; /* Added for the star overlay */
-      }
-            /* Star background container */
+      position: relative;
+    }
     #starfield {
       position: fixed;
       top: 0;
@@ -43,25 +39,21 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      pointer-events: none; /* So it doesn't block clicking */
+      pointer-events: none;
     }
-
     .star {
       position: absolute;
       background-color: #ffffff;
       border-radius: 50%;
     }
-
     @media (pointer: fine) {
       body {
-        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%238b5cf6' stroke='%23e2deff' strok[...]
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='5' fill='%237c3aed' stroke='%23e2deff' stroke-width='1.5'/%3E%3Ccircle cx='14' cy='14' r='1.5' fill='%23e2deff'/%3E%3C/svg%3E") 14 14, auto;
       }
-
       a, button, .btn-primary, .btn-secondary, .nav-cta, .feature-card, .footer-discord, .copy-btn {
-        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 L24 16 L16 17 L13 27 Z' fill='%238b5cf6' stroke='%23e[...]
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 L24 16 L16 17 L13 27 Z' fill='%237c3aed' stroke='%23e2deff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 8 4, pointer;
       }
     }
-
     nav {
       position: fixed;
       top: 0;
@@ -76,7 +68,6 @@
       border-bottom: 1px solid var(--border);
       z-index: 1000;
     }
-
     .logo {
       font-size: 1.5rem;
       font-weight: 800;
@@ -84,24 +75,20 @@
       color: var(--accent);
       text-transform: uppercase;
     }
-
     .logo span {
       color: var(--text);
     }
-
     nav ul {
       display: flex;
       list-style: none;
       gap: 2rem;
     }
-
     nav ul a {
       color: var(--text-dim);
       text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-
     .nav-cta {
       padding: 0.5rem 1.3rem;
       background: var(--accent);
@@ -113,7 +100,6 @@
       text-decoration: none;
       transition: box-shadow 0.2s, transform 0.1s, outline 0.2s;
     }
-
     .hero {
       min-height: 100vh;
       display: flex;
@@ -125,7 +111,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -138,7 +123,6 @@
       filter: blur(60px);
       z-index: -1;
     }
-
     .hero h1 {
       font-size: 3.8rem;
       font-weight: 800;
@@ -148,19 +132,16 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero p {
       font-size: 1.25rem;
       color: var(--text-dim);
       max-width: 560px;
       margin-bottom: 2.5rem;
     }
-
     .hero-btns {
       display: flex;
       gap: 1rem;
     }
-
     .btn-primary {
       padding: 0.8rem 2rem;
       background: var(--accent);
@@ -173,7 +154,6 @@
       text-decoration: none;
       transition: box-shadow 0.2s, transform 0.1s, outline 0.2s;
     }
-
     .btn-secondary {
       padding: 0.8rem 2rem;
       background: transparent;
@@ -186,32 +166,27 @@
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s, outline 0.2s;
     }
-
     .features {
       padding: 5rem 2rem;
       max-width: 1000px;
       margin: 0 auto;
     }
-
     .section-title {
       text-align: center;
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
-
     .section-subtitle {
       text-align: center;
       color: var(--text-dim);
       margin-bottom: 3rem;
     }
-
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
-
     .feature-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -219,28 +194,23 @@
       padding: 2rem;
       transition: border-color 0.2s, transform 0.2s, outline 0.2s;
     }
-
     .feature-icon {
       font-size: 2rem;
       margin-bottom: 1rem;
     }
-
     .feature-card h3 {
       font-size: 1.2rem;
       margin-bottom: 0.6rem;
     }
-
     .feature-card p {
       color: var(--text-dim);
       font-size: 0.95rem;
     }
-
     .scripts-section {
       padding: 5rem 2rem;
       max-width: 900px;
       margin: 0 auto;
     }
-
     .script-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -248,7 +218,6 @@
       overflow: hidden;
       margin-bottom: 2rem;
     }
-
     .script-header {
       display: flex;
       justify-content: space-between;
@@ -256,19 +225,16 @@
       padding: 1.2rem 1.5rem;
       border-bottom: 1px solid var(--border);
     }
-
     .script-header-left {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-
     .script-header h3 {
       font-size: 1.1rem;
       font-weight: 700;
     }
-
-        .script-tag {
+    .script-tag {
       font-size: 0.75rem;
       padding: 0.2rem 0.6rem;
       background: rgba(124, 58, 237, 0.15);
@@ -277,7 +243,6 @@
       border-radius: 6px;
       font-weight: 600;
     }
-
     .copy-btn {
       padding: 0.4rem 1rem;
       background: var(--accent);
@@ -292,12 +257,10 @@
       overflow: hidden;
       flex-shrink: 0;
     }
-
     .copy-btn.copied {
       background: #4ade80;
       box-shadow: 0 0 16px rgba(74, 222, 128, 0.4);
     }
-
     .script-meta {
       padding: 0.75rem 1.5rem;
       display: flex;
@@ -307,23 +270,19 @@
       border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
     }
-
     .script-meta span strong {
       color: var(--text);
     }
-
     .code-block {
       position: relative;
       max-height: 500px;
       overflow: auto;
       max-width: 100%;
     }
-
     .code-block pre {
       padding: 1.5rem;
       margin: 0;
     }
-
     .code-block code {
       font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
       font-size: 0.82rem;
@@ -332,26 +291,21 @@
       white-space: pre;
       display: block;
     }
-
     .code-block::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
-
     .code-block::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.2);
     }
-
     .code-block::-webkit-scrollbar-thumb {
       background: var(--accent);
       border-radius: 4px;
     }
-
     .cta-section {
       padding: 5rem 2rem;
       text-align: center;
     }
-
     .cta-box {
       max-width: 600px;
       margin: 0 auto;
@@ -362,7 +316,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .cta-box::before {
       content: '';
       position: absolute;
@@ -373,21 +326,17 @@
       background: radial-gradient(circle at center, var(--accent-glow), transparent 60%);
       opacity: 0.3;
     }
-
     .cta-box > * {
       position: relative;
     }
-
     .cta-box h2 {
       font-size: 1.8rem;
       margin-bottom: 0.8rem;
     }
-
     .cta-box p {
       color: var(--text-dim);
       margin-bottom: 2rem;
     }
-
     footer {
       padding: 2rem;
       text-align: center;
@@ -395,8 +344,7 @@
       color: var(--text-dim);
       font-size: 0.9rem;
     }
-
-     .footer-discord {
+    .footer-discord {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -406,65 +354,56 @@
       transition: color 0.2s, outline 0.2s;
       border-radius: 6px;
     }
-
     .btn-primary:active, .btn-secondary:active, .nav-cta:active, .feature-card:active, .copy-btn:active, .footer-discord:active {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
     .btn-primary:active { transform: scale(0.95); }
-    .btn-secondary:active { transform: scale(0.95); background: rgba(139, 92, 246, 0.15); }
+    .btn-secondary:active { transform: scale(0.95); background: rgba(124, 58, 237, 0.15); }
     .nav-cta:active { transform: scale(0.95); }
     .feature-card:active { transform: scale(0.98); }
     .copy-btn:active { transform: scale(0.95); }
     .footer-discord:active { opacity: 0.8; }
     nav ul a:active { color: var(--accent); }
-
     @media (hover: hover) {
       nav ul a:hover { color: var(--accent); }
       nav ul a:focus-visible { color: var(--accent); outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
-      
       .nav-cta:hover, .nav-cta:focus-visible {
         box-shadow: 0 0 20px var(--accent-glow);
         transform: translateY(-1px);
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
       .btn-primary:hover, .btn-primary:focus-visible {
         box-shadow: 0 0 24px var(--accent-glow);
         transform: translateY(-2px);
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
       .btn-secondary:hover, .btn-secondary:focus-visible {
         border-color: var(--accent);
-        background: rgba(139, 92, 246, 0.08);
+        background: rgba(124, 58, 237, 0.08);
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
       .feature-card:hover, .feature-card:focus-visible {
         border-color: var(--accent);
         transform: translateY(-4px);
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
       .copy-btn:hover, .copy-btn:focus-visible {
         box-shadow: 0 0 16px var(--accent-glow);
         transform: translateY(-1px);
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
       .footer-discord:hover, .footer-discord:focus-visible {
         color: var(--text);
         outline: 2px solid var(--accent);
         outline-offset: 4px;
       }
     }
-
     @media (max-width: 640px) {
       nav { padding: 1.2rem 1.5rem; }
       nav ul { display: none; }
@@ -479,172 +418,584 @@
   </style>
 </head>
 <body>
-
   <div id="starfield"></div>
-
   <nav>
-    <div class="logo">M🌕🌕N<span>K1DD</span></div>
-        <ul>
+    <div class="logo">M🌕N<span>K1DD</span></div>
+    <ul>
       <li><a href="#features">Tips</a></li>
       <li><a href="#scripts">Scripts</a></li>
       <li><a href="#require-scripts">Require Scripts</a></li>
       <li><a href="#cta">Get Started</a></li>
-        </ul>
-    <a href="https://discord.gg/ntGVdBXRhb" target="_blank" rel="noopener" class="nav-cta">Join Discord</a>
-    </nav>
+    </ul>
+    <a href="https://discord.gg/xvnanPj8pp" target="_blank" rel="noopener" class="nav-cta">Join Discord</a>
+  </nav>
+    <main>
+    <section class="hero">
+      <h1>Level Up Your Roblox Scripts</h1>
+      <p>Expert scripting tips, tricks, and techniques to take your Roblox game development to the next level. From beginner to advanced — M00NK1DD has you covered.</p>
+      <div class="hero-btns">
+        <a href="#features" class="btn-primary">Explore Tips</a>
+        <a href="https://discord.gg/xvnanPj8pp" target="_blank" rel="noopener" class="btn-secondary">Join Our Discord</a>
+      </div>
+    </section>
 
-  <main>
-
-  <section class="hero">
-    <h1>Level Up Your Roblox Scripts</h1>
-    <p>Expert scripting tips, tricks, and techniques to take your Roblox game development to the next level. From beginner to advanced M00NK1DD has you covered.</p>
-    <div class="hero-btns">
-      <a href="#features" class="btn-primary">Explore Tips</a>
-      <a href="https://discord.gg/ntGVdBXRhb" target="_blank" rel="noopener" class="btn-secondary">Join Our Discord</a>
-    </div>
-  </section>
-<section class="features" id="features">
-    <h2 class="section-title">What You'll Learn</h2>
-    <p class="section-subtitle">Practical scripting knowledge you can apply right away.</p>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Performance Optimization</h3>
-        <p>Write cleaner, faster Luau code that keeps your games running smooth even with complex mechanics.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧩</div>
-        <h3>Advanced Mechanics</h3>
-        <p>Master RemoteEvents, DataStores, OOP patterns, and modular systems used by top Roblox developers.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚀</div>
-        <h3>Game Architecture</h3>
-        <p>Structure your projects for scalability with client-server best practices and clean folder hierarchies.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🐛</div>
-        <h3>Debugging Tips</h3>
-        <p>Learn how to track down bugs fast using Roblox Studio tools, print strategies, and error handling.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎮</div>
-        <h3>UI & UX Scripting</h3>
-        <p>Create responsive, polished interfaces with TweenService, SurfaceGui, and smooth animations.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Anti-Exploit Basics</h3>
-        <p>Understand common vulnerabilities in Roblox games and how to protect your server-side logic.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="scripts-section" id="scripts">
-    <h2 class="section-title">Scripts</h2>
-    <p class="section-subtitle">Luau Scripts Made By us.</p>
-
-    <!-- Script 1: Music Player -->
-    <div class="script-card">
-      <div class="script-header">
-        <div class="script-header-left">
-          <h3>🎵 Music Player (Revamped)</h3>
-          <span class="script-tag">Luau</span>
+    <section class="features" id="features">
+      <h2 class="section-title">What You'll Learn</h2>
+      <p class="section-subtitle">Practical scripting knowledge you can apply right away.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Performance Optimization</h3>
+          <p>Write cleaner, faster Luau code that keeps your games running smooth even with complex mechanics.</p>
         </div>
-        <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
-      </div>
-      <div class="script-meta">
-        <span><strong>Author:</strong> Vecxson</span>
-        <span><strong>Type:</strong> Client-side UI</span>
-        <span><strong>Features:</strong> Playlist, Visualizer, Scrubbing</span>
-      </div>
-      <div class="code-block">
-        <pre><code>loadstring(game:HttpGet("https://pastebin.com/raw/36kPpaA4"))()</code></pre>
-      </div>
-    </div>
-
-    <!-- Script 2: M00NK1DD GUI -->
-    <div class="script-card">
-      <div class="script-header">
-        <div class="script-header-left">
-          <h3>💻 M00NK1DD Executor GUI</h3>
-          <span class="script-tag">Luau</span>
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Advanced Mechanics</h3>
+          <p>Master RemoteEvents, DataStores, OOP patterns, and modular systems used by top Roblox developers.</p>
         </div>
-        <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Game Architecture</h3>
+          <p>Structure your projects for scalability with client-server best practices and clean folder hierarchies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🐛</div>
+          <h3>Debugging Tips</h3>
+          <p>Learn how to track down bugs fast using Roblox Studio tools, print strategies, and error handling.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>UI & UX Scripting</h3>
+          <p>Create responsive, polished interfaces with TweenService, SurfaceGui, and smooth animations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Anti-Exploit Basics</h3>
+          <p>Understand common vulnerabilities in Roblox games and how to protect your server-side logic.</p>
+        </div>
       </div>
-      <div class="script-meta">
-        <span><strong>Author:</strong> M00NK1DD</span>
-        <span><strong>Type:</strong> Client-side UI / Executor</span>
-        <span><strong>Features:</strong> Custom GUI, Execute, Reset, R6</span>
+    </section>
+
+    <section class="scripts-section" id="scripts">
+      <h2 class="section-title">Scripts</h2>
+      <p class="section-subtitle">Our own scripts</p>
+
+      <!-- Script 1: Music Player -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🎵 Music Player (Revamped)</h3>
+            <span class="script-tag">Luau</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="script-meta">
+          <span><strong>Author:</strong> Vecxson</span>
+          <span><strong>Type:</strong> Client-side UI</span>
+          <span><strong>Features:</strong> Playlist, Visualizer, Scrubbing</span>
+        </div>
+        <div class="code-block">
+          <pre><code>loadstring(game:HttpGet("https://pastebin.com/raw/36kPpaA4"))()</code></pre>
+        </div>
       </div>
-      <div class="code-block">
-        <pre><code>-- M00NK1DD GUI - Fixed
-local GuiV1 = Instance.new("ScreenGui")
+
+      <!-- Script 2: M00NK1DD GUI -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>💻 M00NK1DD Executor GUI</h3>
+            <span class="script-tag">Luau</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="script-meta">
+          <span><strong>Author:</strong> M00NK1DD</span>
+          <span><strong>Type:</strong> Client-side UI / Executor</span>
+          <span><strong>Features:</strong> Custom GUI, Execute, Reset, R6</span>
+        </div>
+        <div class="code-block">
+          <pre><code>local GuiV1 = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
 local ImageLabel = Instance.new("ImageLabel")
-[...]</code></pre>
+local SourceFrame = Instance.new("Frame")
+local SourceScrolling = Instance.new("ScrollingFrame")
+local Input = Instance.new("TextBox")
+local ExecuteBtn = Instance.new("TextButton")
+local ClearBtn = Instance.new("TextButton")
+local ResetBtn = Instance.new("TextButton")
+local R6Btn = Instance.new("TextButton")
+local ResetAllBtn = Instance.new("TextButton")
+local IconBtn = Instance.new("TextButton")
+local ImageLabel_2 = Instance.new("ImageLabel")
+
+GuiV1.Name = "GuiV1"
+GuiV1.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+GuiV1.ResetOnSpawn = false
+GuiV1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = GuiV1
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BackgroundTransparency = 0.2
+MainFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+MainFrame.BorderSizePixel = 2
+MainFrame.Position = UDim2.new(0.30769223, 0, 0.293081909, 0)
+MainFrame.Size = UDim2.new(0.384615391, 0, 0.411320746, 0)
+MainFrame.ZIndex = 2
+MainFrame.Active = true
+MainFrame.Selectable = true
+MainFrame.Draggable = true
+
+TextLabel.Parent = MainFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.262645155, 0, -0.00305810408, 0)
+TextLabel.Size = UDim2.new(0.506976724, 0, 0.137614772, 0)
+TextLabel.ZIndex = 3
+TextLabel.Font = Enum.Font.Cartoon
+TextLabel.Text = "m00nk1dd"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextStrokeTransparency = 0
+TextLabel.TextWrapped = true
+
+ImageLabel.Parent = MainFrame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.557909608, 0, -0.304188192, 0)
+ImageLabel.Rotation = 20
+ImageLabel.Size = UDim2.new(0.475968987, 0, 0.920489311, 0)
+ImageLabel.ZIndex = 2
+ImageLabel.Image = "rbxassetid://131004660649166"
+ImageLabel.ScaleType = Enum.ScaleType.Fit
+
+SourceFrame.Name = "SourceFrame"
+SourceFrame.Parent = MainFrame
+SourceFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+SourceFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+SourceFrame.BorderSizePixel = 2
+SourceFrame.Position = UDim2.new(0.0167014897, 0, 0.137614772, 0)
+SourceFrame.Size = UDim2.new(0.968992233, 0, 0.730886877, 0)
+SourceFrame.ZIndex = 3
+
+SourceScrolling.Name = "SourceScrolling"
+SourceScrolling.Parent = SourceFrame
+SourceScrolling.Active = true
+SourceScrolling.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SourceScrolling.BackgroundTransparency = 1
+SourceScrolling.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SourceScrolling.BorderSizePixel = 0
+SourceScrolling.Size = UDim2.new(1, 0, 1, 0)
+SourceScrolling.ZIndex = 2
+SourceScrolling.HorizontalScrollBarInset = Enum.ScrollBarInset.Always
+SourceScrolling.VerticalScrollBarInset = Enum.ScrollBarInset.Always
+
+Input.Name = "Input"
+Input.Parent = SourceScrolling
+Input.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Input.BackgroundTransparency = 1
+Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Input.BorderSizePixel = 0
+Input.Size = UDim2.new(1, 0, 1, 0)
+Input.ZIndex = 3
+Input.ClearTextOnFocus = false
+Input.Font = Enum.Font.SourceSansBold
+Input.MultiLine = true
+Input.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Input.Text = ""
+Input.TextColor3 = Color3.fromRGB(255, 255, 255)
+Input.TextSize = 16
+Input.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Input.TextStrokeTransparency = 0
+Input.TextXAlignment = Enum.TextXAlignment.Left
+Input.TextYAlignment = Enum.TextYAlignment.Top
+
+local buttons = {ExecuteBtn, ClearBtn, ResetBtn, R6Btn, ResetAllBtn}
+for _, btn in pairs(buttons) do
+    btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    btn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    btn.BorderSizePixel = 2
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+end
+
+ExecuteBtn.Name = "ExecuteBtn"
+ExecuteBtn.Parent = MainFrame
+ExecuteBtn.Position = UDim2.new(0.0155038759, 0, 0.889908254, 0)
+ExecuteBtn.Size = UDim2.new(0.265116274, 0, 0.0917431191, 0)
+ExecuteBtn.ZIndex = 2
+ExecuteBtn.Font = Enum.Font.SourceSans
+ExecuteBtn.Text = "Execute"
+ExecuteBtn.TextScaled = true
+ExecuteBtn.TextSize = 14
+ExecuteBtn.TextWrapped = true
+
+ClearBtn.Name = "ClearBtn"
+ClearBtn.Parent = MainFrame
+ClearBtn.Position = UDim2.new(0.291472882, 0, 0.889908254, 0)
+ClearBtn.Size = UDim2.new(0.265116274, 0, 0.0917431191, 0)
+ClearBtn.ZIndex = 2
+ClearBtn.Font = Enum.Font.SourceSans
+ClearBtn.Text = "Clear"
+ClearBtn.TextScaled = true
+ClearBtn.TextSize = 14
+ClearBtn.TextWrapped = true
+
+ResetBtn.Name = "ResetBtn"
+ResetBtn.Parent = MainFrame
+ResetBtn.Position = UDim2.new(0.568992257, 0, 0.889908254, 0)
+ResetBtn.Size = UDim2.new(0.215503871, 0, 0.0917431191, 0)
+ResetBtn.ZIndex = 2
+ResetBtn.Font = Enum.Font.SourceSans
+ResetBtn.Text = "Reset Character"
+ResetBtn.TextScaled = true
+ResetBtn.TextSize = 14
+ResetBtn.TextWrapped = true
+
+R6Btn.Name = "R6Btn"
+R6Btn.Parent = MainFrame
+R6Btn.Position = UDim2.new(0.798449636, 0, 0.889908254, 0)
+R6Btn.Size = UDim2.new(0.186046511, 0, 0.0917431191, 0)
+R6Btn.ZIndex = 2
+R6Btn.Font = Enum.Font.SourceSans
+R6Btn.Text = "R6 Character"
+R6Btn.TextScaled = true
+R6Btn.TextSize = 14
+R6Btn.TextWrapped = true
+
+ResetAllBtn.Name = "ResetAllBtn"
+ResetAllBtn.Parent = MainFrame
+ResetAllBtn.Position = UDim2.new(0.0155038759, 0, 0.0214067269, 0)
+ResetAllBtn.Size = UDim2.new(0.186046511, 0, 0.0917431191, 0)
+ResetAllBtn.ZIndex = 2
+ResetAllBtn.Font = Enum.Font.SourceSans
+ResetAllBtn.Text = "Reset all"
+ResetAllBtn.TextScaled = true
+ResetAllBtn.TextSize = 14
+ResetAllBtn.TextWrapped = true
+
+IconBtn.Name = "IconBtn"
+IconBtn.Parent = GuiV1
+IconBtn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+IconBtn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+IconBtn.BorderSizePixel = 2
+IconBtn.Position = UDim2.new(0.478831232, 0, 0.0226415098, 0)
+IconBtn.Size = UDim2.new(0.0417412035, 0, 0.0880503133, 0)
+IconBtn.Font = Enum.Font.SourceSans
+IconBtn.Text = ""
+IconBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+IconBtn.TextSize = 14
+IconBtn.Active = true
+IconBtn.Selectable = true
+IconBtn.Draggable = true
+
+ImageLabel_2.Parent = IconBtn
+ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_2.BackgroundTransparency = 1
+ImageLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_2.BorderSizePixel = 0
+ImageLabel_2.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel_2.Image = "rbxassetid://106749647599098"
+
+function ExecuteScript()
+    local code = Input.Text
+    local func, err = loadstring(code)
+    if not func then warn(err) return end
+    func()
+end
+
+local function ClearText() 
+    Input.Text = "" 
+end
+
+local function ResetCharacter()
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character or plr.CharacterAdded:Wait()
+    char:BreakJoints()
+end
+
+local function ResetAllCharacter()
+    for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
+        if plr.Character then 
+            plr.Character:BreakJoints() 
+        end
+    end
+end
+
+local function R6Character()
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character
+    if char and char:FindFirstChild("Humanoid") then
+        char.Humanoid.RigType = Enum.HumanoidRigType.R6
+    end
+end
+
+local function CustomizeIcon()
+    MainFrame.Visible = not MainFrame.Visible
+end
+
+ResetAllBtn.MouseButton1Click:Connect(ResetAllCharacter)
+ResetBtn.MouseButton1Click:Connect(ResetCharacter)
+R6Btn.MouseButton1Click:Connect(R6Character)
+ClearBtn.MouseButton1Click:Connect(ClearText)
+ExecuteBtn.MouseButton1Click:Connect(ExecuteScript)
+IconBtn.MouseButton1Click:Connect(CustomizeIcon)</code></pre>
+        </div>
       </div>
-    </div>
+
+      <!-- Script 3: Universal invis -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>👻 Universal invis</h3>
+            <span class="script-tag">Luau</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="script-meta">
+          <span><strong>Author:</strong> M00NK1DD</span>
+          <span><strong>Type:</strong> Executor / Loader</span>
+          <span><strong>Features:</strong> Makes the User invisible</span>
+        </div>
+        <div class="code-block">
+          <pre><code>loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()</code></pre>
+        </div>
+      </div>
   </section>
+      <!-- Require Scripts Section -->
+    <section class="scripts-section" id="require-scripts">
+      <h2 class="section-title">Require Scripts</h2>
+      <p class="section-subtitle">Load these scripts by replacing "Your Username" with your actual Roblox username.</p>
 
-  <section class="cta-section" id="cta">
-    <div class="cta-box">
-      <h2>Ready to Level Up?</h2>
-      <p>Join our Discord community and connect with other Roblox developers. Share your progress, get feedback, and learn together.</p>
-      <a href="https://discord.gg/ntGVdBXRhb" target="_blank" rel="noopener" class="btn-primary">Join Discord Now</a>
-    </div>
-  </section>
+      <!-- Huggy Script -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🧸 Huggy Script</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(73888902428931).load("Your Username")</code></pre>
+        </div>
+      </div>
 
-</main>
+      <!-- Demogorgon Script -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>👹 Demogorgon Script</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(90079465185110).load("Your Username")</code></pre>
+        </div>
+      </div>
 
-<footer>
-  <p>© 2024 M00NK1DD. All rights reserved.</p>
-  <p><a href="https://discord.gg/ntGVdBXRhb" target="_blank" rel="noopener" class="footer-discord">Join our Discord</a></p>
+      <!-- k00pgui Version 11 -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🛠️ k00pgui Version 11</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(15267263357).V11("Your Username")</code></pre>
+        </div>
+      </div>
+
+      <!-- Bird GUI -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🐦 Bird GUI</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="script-meta">
+          <span><strong>Code:</strong> 123</span>
+        </div>
+        <div class="code-block">
+          <pre><code>require(74027224607683).load("Your Username")</code></pre>
+        </div>
+      </div>
+
+      <!-- Morph GUI -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🎭 Morph GUI</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="script-meta">
+          <span><strong>Key:</strong> 2x4x8x64.</span>
+        </div>
+        <div class="code-block">
+          <pre><code>require(73888902428931).load("Your Username")</code></pre>
+        </div>
+      </div>
+
+      <!-- Android Prototype 3.0 -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🤖 Android Prototype 3.0</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(73755486018996).MorphMonster("Your Username", "Prototype")</code></pre>
+        </div>
+      </div>
+
+      <!-- Spider Queen -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🕷️ Spider Queen</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(81801397159119).MorphMonster("Your Username", "spider queen")</code></pre>
+        </div>
+      </div>
+
+      <!-- Locust Script -->
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-header-left">
+            <h3>🦗 Locust Script</h3>
+            <span class="script-tag">Require</span>
+          </div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy Script</button>
+        </div>
+        <div class="code-block">
+          <pre><code>require(75834950186546).MorphMonster("Your Username", "locust")</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="cta">
+      <div class="cta-box">
+        <h2>Ready to Script Like a Pro?</h2>
+        <p>Join M00NK1DD on Discord today!</p>
+        <a href="https://discord.gg/xvnanPj8pp" target="_blank" rel="noopener" class="btn-primary">Join Our Discord</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://discord.gg/xvnanPj8pp" target="_blank" rel="noopener" class="footer-discord">
+      💬 Join our Discord
+    </a>
+    <br>
+    &copy; 2026 M00NK1DD. All rights reserved.
+  </footer>
+
   <script>
-    // Starfield generator
-    const starfield = document.getElementById('starfield');
-    const starCount = 150;
-
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      const size = Math.random() * 1.5 + 0.5;
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.opacity = Math.random() * 0.7 + 0.3;
-      star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
-      starfield.appendChild(star);
+    // Generate random stars
+    function generateStars() {
+      const starfield = document.getElementById('starfield');
+      if (!starfield) return;
+      
+      const starCount = Math.floor(Math.random() * 200) + 150;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 1.5 + 1;
+        const opacity = Math.random() * 0.5 + 0.5;
+        
+        star.style.left = x + '%';
+        star.style.top = y + '%';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.opacity = opacity;
+        
+        if (Math.random() > 0.8) {
+          star.style.backgroundColor = '#c4b5fd';
+        }
+        
+        starfield.appendChild(star);
+      }
     }
 
-    // Twinkle animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes twinkle {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 1; }
-      }
-    `;
-    document.head.appendChild(style);
+    generateStars();
 
-    // Copy to clipboard function
-    function copyScript(button) {
-      const codeBlock = button.parentElement.parentElement.querySelector('.code-block code');
-      const text = codeBlock.innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        const originalText = button.innerText;
-        button.innerText = '✓ Copied!';
-        button.classList.add('copied');
-        setTimeout(() => {
-          button.innerText = originalText;
-          button.classList.remove('copied');
-        }, 2000);
-      });
+    // Copy script function
+    function copyScript(btn) {
+      const card = btn.closest('.script-card');
+      if (!card) return;
+      const codeEl = card.querySelector('code');
+      if (!codeEl) return;
+      
+      const text = codeEl.innerText;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showCopied(btn);
+        }).catch(function() {
+          fallbackCopy(text, btn);
+        });
+      } else {
+        fallbackCopy(text, btn);
+      }
+    }
+
+    function fallbackCopy(text, btn) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.top = '0';
+      textArea.style.left = '0';
+      textArea.style.position = 'fixed';
+      
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showCopied(btn);
+        } else {
+          window.prompt("Copy to clipboard: Ctrl+C / Cmd+C, Enter", text);
+        }
+      } catch (err) {
+        window.prompt("Copy to clipboard: Ctrl+C / Cmd+C, Enter", text);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    function showCopied(btn) {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy Script';
+        btn.classList.remove('copied');
+      }, 2000);
     }
   </script>
-</footer>
 
 </body>
-</html>
+  </html>
