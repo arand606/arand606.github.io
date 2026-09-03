@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M00NK1DD — Roblox Scripting</title>
+  <title>M00NK1DD — Roblox Scripts & Executor GUIs</title>
+  <meta name="description" content="M00NK1DD offers premium custom Roblox scripts, executor GUIs, and developer tools. Join our community for the latest updates and script releases.">
+  <meta name="keywords" content="Roblox scripts, Luau, M00NK1DD, Roblox executor, Roblox GUI, Roblox exploits, game development">
+  <meta name="author" content="M00NK1DD">
   <style>
     html {
       overflow-x: hidden;
@@ -112,6 +115,17 @@
       cursor: pointer;
       text-decoration: none;
       transition: box-shadow 0.2s, transform 0.1s, outline 0.2s;
+    }
+    .nav-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #facc15;
+      cursor: pointer;
+      padding: 0 0.5rem;
     }
     .hero {
       min-height: 100vh;
@@ -428,7 +442,28 @@
     }
     @media (max-width: 640px) {
       nav { padding: 1.2rem 1.5rem; }
-      nav ul { display: none; }
+      .hamburger { display: block; }
+      
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(8, 8, 8, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-radius: 0 0 0 12px;
+        border-bottom: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+        width: 200px;
+      }
+
+      .nav-toggle:checked ~ ul {
+        display: flex;
+      }
+
       .hero h1 { font-size: 2.5rem; }
       .hero p { font-size: 1.05rem; }
       .hero-btns { flex-direction: column; width: 100%; }
@@ -443,6 +478,10 @@
   <div id="starfield"></div>
   <nav>
     <div class="logo">M🌕🌕N<span>K1DD</span></div>
+    
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger">&#9776;</label>
+    
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#scripts">Scripts</a></li>
@@ -450,7 +489,7 @@
       <li><a href="#cta">Get Started</a></li>
     </ul>
     <a href="https://discord.gg/xvnanPj8pp" target="_blank" rel="noopener" class="nav-cta">Join Discord</a>
-  </nav>
+    </nav>
     <main>
     <section class="hero">
       <h1>Up Your Roblox Scripts</h1>
